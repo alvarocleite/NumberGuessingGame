@@ -23,7 +23,7 @@ int Cli::chooseDifficulty(){
     bool valid = false;
     do{
         cout << "Please choose difficulty level (1 - 3)" << endl;
-        cin >> difficulty;
+        getProtectedIntInput(difficulty); 
         cout << endl;
         switch (difficulty) {
         case 1:
@@ -51,7 +51,7 @@ int Cli::chooseDifficulty(){
 int Cli::getTry(){
     int guess;
     cout << "Enter you guess: ";
-    cin >> guess;
+    getProtectedIntInput(guess);
     return guess;
 }
 
@@ -80,6 +80,18 @@ void Cli::startingGame(){
 bool Cli::play_again(){
     int temp;
     cout << "Do you want to play again? (1 - yes or 0 - no)" << endl;
-    cin >> temp;
-    return (temp == 1 ? true : false );
+    bool cleanInput = getProtectedIntInput(temp);
+    return ( (temp == 1 && cleanInput) ? true : false );
+}
+
+bool Cli::getProtectedIntInput(int& value){
+    string input;
+    getline(cin, input);
+    try {
+        value = stoi(input); 
+    }
+    catch(...) {
+        return false;
+    }
+    return true;
 }

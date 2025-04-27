@@ -3,6 +3,7 @@ class Cli{
     private:
         void printWelcome();
         void printRules();
+        bool getProtectedIntInput(int&);
 
     public:
         Cli();
