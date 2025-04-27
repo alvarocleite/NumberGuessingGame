@@ -10,4 +10,6 @@ class Cli{
         int chooseDifficulty();
         int getTry();
         void displayResult(bool, int, int);
+        void startingGame();
+        bool play_again();
 };

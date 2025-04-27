@@ -72,3 +72,14 @@ void Cli::printRules(){
     cout << " - The number are between 1 and 100." << endl;
     cout << " - You got between 3 and 10 chances, depending on the difficulty" << endl;
 }
+
+void Cli::startingGame(){
+    cout << "Starting Game..." << endl << endl;
+}
+
+bool Cli::play_again(){
+    int temp;
+    cout << "Do you want to play again? (1 - yes or 0 - no)" << endl;
+    cin >> temp;
+    return (temp == 1 ? true : false );
+}

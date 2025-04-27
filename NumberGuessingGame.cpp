@@ -6,16 +6,30 @@
 
 int triesbyDifficulty [DIFFICULTYLEVELS] = { 10, 5, 3 };
 
+int gameCycle(Cli& cli, const int difficulty);
 int getRand();
 
 int main(){
     int difficulty = 0;
-    bool win = false;
-    int tries = 0;
+    bool play_again = false;
 
     Cli cli;
     difficulty = cli.chooseDifficulty() - 1;
 
+    do{
+        cli.startingGame();
+
+        gameCycle(cli, difficulty);
+
+        play_again = cli.play_again();
+    }while(play_again);
+
+    return 0;
+}
+
+int gameCycle(Cli& cli, const int difficulty){
+    bool win = false;
+    int tries = 0;
     // Get random number
     int randNumber = getRand();
 
@@ -26,7 +40,7 @@ int main(){
     
     cli.displayResult(win, tries, randNumber);
 
-    return 0;
+    return 1;
 }
 
 int getRand(){
