@@ -2,56 +2,41 @@
 #include <cstdlib>
 #include "cli.h"
 
-int getRand(int difficulty);
+#define DIFFICULTYLEVELS 3
+
+int triesbyDifficulty [DIFFICULTYLEVELS] = { 10, 5, 3 };
+
+int getRand();
 
 int main(){
-    int difficulty = 1;
+    int difficulty = 0;
     bool win = false;
     int tries = 0;
 
-    printWelcome();
-    difficulty = chooseDifficulty();
-
-    // Providing seed value
-    srand(time(NULL));
+    Cli cli;
+    difficulty = cli.chooseDifficulty() - 1;
 
     // Get random number
-    int randNumber = getRand(difficulty);
+    int randNumber = getRand();
 
-    do
-    {
-        win = (getTry() == randNumber);
+    do{
+        win = (cli.getTry() == randNumber);
         tries++;
-    } while (tries < 3 && !win);
+    } while (tries < triesbyDifficulty[difficulty] && !win);
     
-    displayResult(win);
+    cli.displayResult(win, tries, randNumber);
 
     return 0;
 }
 
-int getRand(int difficulty){
-    int random, temp;
-    switch (difficulty)
-    {
-    case 1:
-        temp = 11;
-        break;
-    case 2:
-        temp = 21;
-        break;
-    case 3:
-        temp = 51;
-        break;
-    case 4:
-        temp = 76;
-        break;
-    case 5:
-        temp = 101;
-        break;
-    default:
-        exit(1);
-        break;
-    }
-    random = rand() % temp;
+int getRand(){
+    int random;
+    
+    // Providing seed value
+    srand(time(NULL));
+
+    // Generate random value
+    random = rand() % 100 + 1;
+    
     return random;
 }
