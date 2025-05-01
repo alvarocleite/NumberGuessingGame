@@ -34,7 +34,13 @@ int gameCycle(Cli& cli, const int difficulty){
     int randNumber = getRand();
 
     do{
-        win = (cli.getTry() == randNumber);
+        int guess = cli.getTry();
+        if (guess == randNumber){
+            win = true;
+        }
+        else {
+            cli.hint(guess < randNumber);
+        }
         tries++;
     } while (tries < triesbyDifficulty[difficulty] && !win);
     

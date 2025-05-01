@@ -13,4 +13,5 @@ class Cli{
         void displayResult(bool, int, int);
         void startingGame();
         bool play_again();
+        void hint(bool bigger);
 };

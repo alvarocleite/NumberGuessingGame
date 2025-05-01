@@ -63,6 +63,8 @@ void Cli::displayResult(bool win, int tries, int rightNumber = -1){
     if (rightNumber != -1) {
         cout << "The right number was: " << rightNumber << endl;
     }
+
+    cout << endl << "************************" << endl; 
 }
 
 void Cli::printRules(){
@@ -81,6 +83,7 @@ bool Cli::play_again(){
     int temp;
     cout << "Do you want to play again? (1 - yes or 0 - no)" << endl;
     bool cleanInput = getProtectedIntInput(temp);
+    cout << endl;
     return ( (temp == 1 && cleanInput) ? true : false );
 }
 
@@ -94,4 +97,8 @@ bool Cli::getProtectedIntInput(int& value){
         return false;
     }
     return true;
+}
+
+void Cli::hint(bool bigger){
+    cout << "The correct number is " << (bigger ? "bigger" : "shorter") << endl << endl;
 }
