@@ -16,6 +16,7 @@ class Cli{
         void startingGame();
         bool play_again();
         void hint(bool bigger);
+        void printBestScore(int score);
 };
 
 #endif /* _CLI_H */

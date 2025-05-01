@@ -13,6 +13,7 @@ int getRand();
 int main(){
     int difficulty = 0;
     bool play_again = false;
+    int newScore, bestScore = 11;
 
     Cli cli;
     difficulty = cli.chooseDifficulty() - 1;
@@ -20,14 +21,23 @@ int main(){
     do{
         cli.startingGame();
 
-        gameCycle(cli, difficulty);
+        newScore = gameCycle(cli, difficulty);
+        if (newScore > 0 && newScore < bestScore)
+            bestScore = newScore;
 
+        if (bestScore < triesbyDifficulty[difficulty])
+            cli.printBestScore(bestScore);
+        
         play_again = cli.play_again();
     }while(play_again);
 
     return 0;
 }
 
+/* This function returns:
+    - -1 in case of lost
+    - number of tries in case of win
+*/
 int gameCycle(Cli& cli, const int difficulty){
     bool win = false;
     int tries = 0;
@@ -61,7 +71,7 @@ int gameCycle(Cli& cli, const int difficulty){
     
     cli.displayResult(win, tries, randNumber, elapsed_seconds.count());
 
-    return 1;
+    return win ? tries : -1;
 }
 
 int getRand(){

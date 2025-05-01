@@ -106,3 +106,7 @@ bool Cli::getProtectedIntInput(int& value){
 void Cli::hint(bool bigger){
     cout << "The correct number is " << (bigger ? "bigger" : "shorter") << endl << endl;
 }
+
+void Cli::printBestScore(int score){
+    cout << "Your best score in this session is " << score << " tries." << endl;
+}
