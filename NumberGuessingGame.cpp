@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <chrono>
 #include "cli.hpp"
 
 #define DIFFICULTYLEVELS 3
@@ -30,8 +31,16 @@ int main(){
 int gameCycle(Cli& cli, const int difficulty){
     bool win = false;
     int tries = 0;
+
+    // Time variables
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+    std::chrono::duration<double> elapsed_seconds;
+
     // Get random number
     int randNumber = getRand();
+
+    // Start timer
+    start = std::chrono::system_clock::now();
 
     do{
         int guess = cli.getTry();
@@ -44,7 +53,13 @@ int gameCycle(Cli& cli, const int difficulty){
         tries++;
     } while (tries < triesbyDifficulty[difficulty] && !win);
     
-    cli.displayResult(win, tries, randNumber);
+    // Stop timer
+    end = std::chrono::system_clock::now();
+
+    // calculate time in seconds
+    elapsed_seconds = end - start;
+    
+    cli.displayResult(win, tries, randNumber, elapsed_seconds.count());
 
     return 1;
 }

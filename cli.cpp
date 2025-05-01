@@ -55,8 +55,12 @@ int Cli::getTry(){
     return guess;
 }
 
-void Cli::displayResult(bool win, int tries, int rightNumber = -1){
-    cout << "It took " << tries << " tries." << endl;
+void Cli::displayResult(bool win, int tries, int rightNumber = -1, double elapsedTime = -1){
+    cout << "It took " << tries << " tries";
+    if (elapsedTime > 0)
+        cout << " and " << elapsedTime << "s." << endl; 
+    else 
+        cout << "." << endl;
     cout << "You " << (win ? "win" : "lost") << " the game!" << endl;
     cout << (win ? "Congratulations!!" : "Better luck next time!") << endl;
     

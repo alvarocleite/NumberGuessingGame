@@ -12,7 +12,7 @@ class Cli{
         ~Cli();
         int chooseDifficulty();
         int getTry();
-        void displayResult(bool, int, int);
+        void displayResult(bool, int, int, double);
         void startingGame();
         bool play_again();
         void hint(bool bigger);
