@@ -1,3 +1,5 @@
+#ifndef _CLI_H
+#define _CLI_H
 
 class Cli{
     private:
@@ -15,3 +17,5 @@ class Cli{
         bool play_again();
         void hint(bool bigger);
 };
+
+#endif /* _CLI_H */
