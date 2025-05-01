@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include "cli.h"
+#include "cli.hpp"
 
 #define DIFFICULTYLEVELS 3
 
